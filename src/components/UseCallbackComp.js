@@ -1,35 +1,31 @@
-import React, { useCallback, useState } from 'react'
-import SkillList from './SkillList'
+// UseCallbackComp.js
+import React, { useState, useCallback } from 'react';
+import SkillList from './SkillList';
 
 const UseCallbackComp = () => {
-    const [inputValue, setInputValue] = useState('');
-    const [list, setList] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [list, setList] = useState(['HTML', 'CSS', 'JavaScript', 'React']);
 
-    
-    
-    const handleAdd=useCallback(()=>{
-        if (inputValue.trim() !== '') {
-            setList([...list, { name: inputValue }]);
-            setInputValue('');
-            console.log("handleAdd")
-        }
-    },[list,inputValue])
+  const handleAdd = useCallback(() => {
+    if (inputValue.trim() !== '') {
+      setList([...list, inputValue]);
+      setInputValue('');
+    }
+  }, [list, inputValue]);
 
-    const handleRemove = useCallback((id) => {
-        const updatedList = list.filter((_, index) => id !== index);
-        setList(updatedList);
-        console.log("remove");
-    }, [list]);
-    
+  const handleRemove = useCallback((index) => {
+    const updatedList = list.filter((_, idx) => idx !== index);
+    setList(updatedList);
+  }, [list]);
 
-    return (
-        <div>
-            <h1 id="heading">List</h1>
-            <input id="skill-input" type='text' onChange={(e) => setInputValue(e.target.value)} value={inputValue} />
-            <button id="skill-add-btn" onClick={handleAdd}>Add list</button>
-            <SkillList list={list} handleRemove={handleRemove} />
-        </div>
-    )
-}
+  return (
+    <div>
+      <h1 id="heading">List</h1>
+      <input id="skill-input" type="text" onChange={(e) => setInputValue(e.target.value)} value={inputValue} />
+      <button id="skill-add-btn" onClick={handleAdd}>Add Skill</button>
+      <SkillList list={list} handleRemove={handleRemove} />
+    </div>
+  );
+};
 
-export default UseCallbackComp
+export default UseCallbackComp;
