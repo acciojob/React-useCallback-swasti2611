@@ -21,8 +21,10 @@ const UseCallbackComp = () => {
   return (
     <div>
       <h1 id="heading">List</h1>
+      <form>
       <input id="skill-input" type="text" onChange={(e) => setInputValue(e.target.value)} value={inputValue} />
       <button id="skill-add-btn" onClick={handleAdd}>Add Skill</button>
+      </form>
       <SkillList list={list} handleRemove={handleRemove} />
     </div>
   );
